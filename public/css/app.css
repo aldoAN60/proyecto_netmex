@@ -1,0 +1,165 @@
+
+body{
+    background: radial-gradient(circle,#0f6847,#031d13);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.menu{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 3;;
+}
+#cont-slo-imgs{
+    margin-top: 85px;
+}
+.icono{ /* contenedor en blanco (debe ser sustituido por el logo)*/
+    height: 85px;
+    width: 100%;
+    background-color: white;
+    border-radius: 15px;
+    border: 3px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;    
+}
+.cont_btns{ /*contenedor que tiene almacenado los botones de inicio de sesio y donacion */
+    height: 100%;
+    width: 100%;
+    display: flex;
+justify-content: flex-end;
+align-items: center;
+}
+a{
+    text-decoration: none; 
+    color: #f2f2f2;
+}
+#btn_paypal{
+    background-color: #00457C;
+    border: none;
+}
+#btn_paypal:hover{
+    background-color: #0065b8;
+    color: #f2f2f2;
+}
+#btn_login{ /*boton de inicio de sesion*/
+    border: none;
+    background-color: #0b593c;
+    
+    margin-left: 1em;
+    margin-right: 3.5em;
+}
+#btn_login:hover{
+
+    background-color:#038c5a;
+    color: #f2f2f2;
+}
+.slogan{ /* clase eslogan de la pagina web junto con input y boton para inscribirse*/
+    height: 100%;
+    width: 100%;
+    display: grid;
+    align-content: center;
+}
+
+#btn_ini{ /*boton de suscribirse*/
+    background-color:#04bf7b;
+    color: #f2f2f2;
+}
+#btn_ini:hover{
+    background-color:#038c5a;
+    color: #f2f2f2;
+}
+.titulos{ /* clase que modifica las etiquetas H*/
+    color: #f2f2f2;
+}
+.parrafos{ /* clase que modifica las etiquetas P*/
+    color:#f2f2f2;
+}
+.img{ /*valores de las imagenes del carrusel*/
+    height: 600px;
+    width: 500px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px 0px #038c5a;
+    margin: 5px;
+}
+.carrusel_img h3{ /* sombreado de las etiquetas H de las imagenes para que sean legibles */
+    text-shadow: #0d0d0d 0.1em 0.1em 0.2em;
+    
+}
+.carrusel_img p{ /* sombreado de las etiquetas P de las imagenes para que sean legibles */
+    text-shadow: #0d0d0d 0.1em 0.1em 0.2em;
+    font-size: 20px;
+    color: antiquewhite;
+    
+}
+.jump_line{
+    width: 100%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border: 5px solid #8bbf8a;
+}
+#text_disp{    
+width: 100%;
+height: 100%;
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+align-content: center;
+padding-left: 50px;
+}
+#text_disp p{
+    font-size: 25px;
+}
+.separador{
+    border: 5px solid #038c5a;
+    width: 100%;
+}
+.FQ{    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 75%;
+    margin-left: 15%;
+    
+}
+.FQ h1{
+    color: #f2f2f2;
+    margin-bottom: 5%;
+    font-weight: bold;
+}
+.FQ div button{
+    color: #f2f2f2;
+    font-size: 35px;
+    text-align: start;
+    display: flex;
+    justify-content: space-between;
+    background-color: #031d13;
+    border: none;
+}
+.FQ div button:hover{
+    background-color: #063b27;
+    
+}
+.FQ div div{
+    background-color: #031d13;
+
+}
+.FQ div div p{
+    color: #f2f2f2;
+    text-align: justify;
+    font-size: 25px;
+}
+.main_footer h4{
+    text-align: center;
+    margin-bottom: 2%;
+}
+ul{
+    list-style: none;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+ul li a:hover{
+    cursor: pointer;
+    border-bottom: 1px solid #f2f2f2;
+}
