@@ -8,9 +8,6 @@
     <link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
-    <div class="menu_lat">
-
-    </div>
         <div class="container-fluid text-center">
             <div class="menu">
                 <div class="row">
