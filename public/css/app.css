@@ -213,7 +213,7 @@ input:required:valid{
     border: none;
 
 }
-#btn_subs:hover{
+#btn_subs:hover{ /*hover*/
     background-color: #0b593c;
     color: #f2f2f2;
 }
