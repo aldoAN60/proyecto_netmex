@@ -2,12 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/inicio', function () {
-    return view('inicio');
-});
-Route::get('/sign_up', function (){
-    return view('sign_up');
-});
-route::get('paypal-donation', function(){
-    return view('paypal-donation');
-});
+
+Route::view('/','inicio')->name('inicio');
+Route::view('/sign_up','sign_up')->name('sign_up');
+route::view('/paypal-donation','paypal-donation')->name('paypal-donation');
