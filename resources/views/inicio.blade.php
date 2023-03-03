@@ -79,7 +79,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <article id="text_disp" align="justify">
+                    <article id="text_disp">
                         <h1 class="titulos">Cuando quieras donde quieras</h1>
                         <p class="parrafos">peliculas desde tu telefono, tablet y computadora.
                         Vive una experiencia unica con una amplia selección de titulos en HD.
