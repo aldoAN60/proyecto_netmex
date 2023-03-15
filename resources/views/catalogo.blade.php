@@ -133,6 +133,22 @@
     }
     /**FALTA PROBRAR EXHAUSTIVAMENTE */
 
+    function amonos() {
+        const pelis = jsonObj['results'];
+
+        for (var i = 0; i < pelis.length; i++) {
+
+            if (pelis[i].media_type === 'tv') {
+                
+                alert(pelis[i].name);
+            }
+            else{
+                
+                alert(pelis[i].title);
+            }
+        }
+    }
+
     function peliculas(jsonObj) {
         const pelis = jsonObj['results'];
 
@@ -140,13 +156,21 @@
 
             const contenedores = document.createElement('div');
             contenedores.className = 'card mb-3';
+            contenedores.style.width = '250px';
+            contenedores.style.height = '370px';
+            contenedores.style.margin = '10px';
+            contenedores.style.float = 'left';
+
+            const contBtn = document.createElement('button');
+            contBtn.onclick = 'amonos';
 
             const imgRsc = document.createElement('img');
-            imgRsc.className = 'card-img-top mw-100';
+            imgRsc.className = 'card-img-top';
             imgRsc.src = 'https://image.tmdb.org/t/p/w500' + pelis[i].poster_path;
+            
 
             const pelicula = document.createElement('div');
-            pelicula.className = 'card-body"';
+            pelicula.className = 'card-body';
 
             const titulo = document.createElement('h5');
             titulo.className = 'card-title';
@@ -166,12 +190,13 @@
             //el valor que asignamos proviene de nuestra variable 
             sipnosis.textContent = pelis[i].overview;
 
+            contBtn.appendChild(imgRsc);
            
             //Mostramos nuestro contenido
-            contenedores.appendChild(imgRsc);
-            contenedores.appendChild(pelicula);
-            pelicula.appendChild(titulo);
-            pelicula.appendChild(sipnosis);
+            contenedores.appendChild(contBtn);
+            //contenedores.appendChild(pelicula);
+            //pelicula.appendChild(titulo);
+            //pelicula.appendChild(sipnosis);
 
             contenedor.appendChild(contenedores);
 
