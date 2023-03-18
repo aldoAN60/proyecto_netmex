@@ -1,33 +1,14 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Netmex Inicio</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/app.css">
-</head>
-<body>
-        <div class="container-fluid text-center">
-            <div class="menu">
-                <div class="row">
-                    <div class="col-sm-2" style="padding:0px">
-                        <div class="icono">
-                            LOGO
-                        </div>
-                    </div>
-                    <div class="col-sm-10">
-                        <div class="cont_btns">
-                            <button type="button" class="btn btn-primary" id="btn_paypal"><a href="" alt="">donacion por paypal</a></button>
-                            <button type="button" class="btn" id="btn_login"><a href="">iniciar sesion</a></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+@extends('layouts.app')
+@section('title',"inicio")
+@section('content')
+<div class="contenido" >
+
+<h1>NetMex</h1>
+
             <div class="row" id="cont-slo-imgs">
                 <div class="col-sm-7">
                     <div class="slogan">
-                        <h1 class="titulos">tus peliculas favoritas en un mismo lugar</h1>
+                        <h2 class="titulos">Tus peliculas favoritas en un mismo lugar</h2>
                         <h5 class="titulos">Disfruta donde quieras y cuando quieras</h5>
                         <p class="parrafos">¿Quieres ver Netmex ya? incresa tu email para crear una cuenta</p>
                         <div class="input-group input-group-lg">
@@ -142,15 +123,7 @@
                 <hr class="jump_line">
             </div>
         </div>
-        <footer class="main_footer">
-                <h4 class="titulos">Preguntas? llama al 477 166 2121</h4>
-                <ul>
-                    <li><a  href="http://">contactanos</a></li>
-                    <li><a  href="http://">privacidad</a></li>
-                    <li><a  href="http://">terminos de uso</a></li>
-                    <li><a  href="http://">cuenta</a></li>
-                </ul>
-        </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    </body>
-</html>
+        
+</div>
+        
+   @endsection
