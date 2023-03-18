@@ -1,7 +1,12 @@
 @extends('layouts.HTML-guest')
 
 @section('title','paypal-donation')
-    
+@section('css-style')
+<link rel="stylesheet" href="/css/paypal-section.css">
+@endsection
+@section('javascript')
+<script src="/js/paypal.js"></script>
+@endsection
 @section('content')
 <main class="paypal-sec">
     <div class="row align-items-center">
@@ -20,33 +25,35 @@
             <div class="paypal-don">
                 <h2>¡Tu decides cuanto donar!</h2>
                 <p>tu donacion nos ayuda a mejorar el servicio de netmex</p>
-                <form action="#">
+                <form action="{{url('/paypal/pay')}}" method="POST">
+                    @csrf
                     <div class="input-group">
                         <div class="input-group-text">
-                            <input class="form-check-input mt-1" type="radio" value="5" aria-label="Radio button for following text input">
+                            <input class="form-check-input mt-1" id="choose_5" type="checkbox" value="5" onclick="selection(this)" >
                         </div>
-                        <input type="text" class="form-control" placeholder="$5"aria-label="Text input with radio button" disabled>
+                        <input type="text" class="form-control" placeholder="$5" disabled>
                     </div>
                     <div class="input-group">
                         <div class="input-group-text">
-                            <input class="form-check-input mt-1" type="radio" value="10" aria-label="Radio button for following text input">
+                            <input class="form-check-input mt-1"id="choose_10" type="checkbox" value="10" onclick="selection(this)">
                         </div>
-                        <input type="text" class="form-control" placeholder="$10"aria-label="Text input with radio button" disabled>
+                        <input type="text" class="form-control" placeholder="$10" disabled>
                     </div>
                     <div class="input-group">
                         <div class="input-group-text">
-                            <input class="form-check-input mt-0" type="radio" value="15" aria-label="Radio button for following text input">
+                            <input class="form-check-input mt-1"id="choose_15" type="checkbox" value="15" onclick="selection(this)">
                         </div>
-                        <input type="text" class="form-control" placeholder="$15"aria-label="Text input with radio button" disabled>
+                        <input type="text" class="form-control" placeholder="$15" disabled>
                     </div>
                     <div class="input-group">
                         <div class="input-group-text">
-                            <input class="form-check-input mt-0" type="radio" aria-label="Radio button for following text input">
+                            <input class="form-check-input mt-0" id="choose_any" type="checkbox" onclick="selection(this)">
                         </div>
-                        <input type="text" class="form-control" placeholder="otra cantidad"aria-label="Text input with radio button">
+                        <input type="number" class="form-control" placeholder="otra cantidad">
                     </div>
                     <div class="cont-pp-btn">
-                    <button class="btn btn-success">aqui va un boton de paypal</button>
+                    <!--    <a href="">donar</a>-->
+                    <button class="btn btn-success">aqui va un boton de paypal</button> 
                 
                     </div>
                 </form>

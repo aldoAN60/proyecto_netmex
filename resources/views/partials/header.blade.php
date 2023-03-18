@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-2" style="padding:0px">
             <div class="icono">
-                LOGO
+                <a href="{{route('inicio')}}">LOGO</a>
             </div>
         </div>
         <div class="col-sm-10">

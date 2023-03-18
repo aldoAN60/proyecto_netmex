@@ -1,0 +1,26 @@
+
+.paypal-sec{
+    margin-top: 8%;
+    margin-bottom: 8%;
+}
+.paypal-don{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    background-color: white;
+    border-radius: 15px;
+}
+.paypal-don h2{
+    margin-top: 35px;
+    margin-bottom: 25px;
+}
+.input-group{
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+}
+.cont-pp-btn{
+    margin-top: 15px;
+    margin-bottom: 35px;
+}

@@ -1,7 +1,14 @@
 @extends('layouts.HTML-guest')
 @section('title','contacto')
-
+@section('css-style')
+<link rel="stylesheet" href="/css/contacto.css">
+@endsection
+@section('javascript')
+<script src="/js/formulario.js"></script>
+@endsection
 @section('content')
+
+
 
 <div class="col-12">
     <div class="cont-form">

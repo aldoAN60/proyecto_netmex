@@ -1,0 +1,52 @@
+.cont-form{    /*contenedor del formulario*/
+    display: flex;
+    margin-top: 4%;
+    margin-bottom: 6%;
+    flex-direction: column;
+    text-align: -webkit-center;
+}
+.sign-up{ /*contenedor de los inputs y labels*/
+    width: 40%;
+    padding: 20px;
+    border-radius: 10px;
+}
+.sign-up form h3{
+    text-align: start;
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.sign-up form p{
+    text-align: justify;
+    font-size: 20px;
+    margin-bottom: 30px ;
+}
+#frm-email{ /*id del input del correo electronico*/
+    height: 60px;
+    font-size: 25px;
+    border: 1px solid #04bf7b;
+
+}
+#frm-password{ /*id del input de la contraseña*/
+    height: 60px;
+    font-size: 25px;
+    border: 1px solid #04bf7b;
+}
+input:required:valid{
+    background-color: rgba(197, 255, 233, 0.9);
+        
+}
+#btn_subs{ /*ID del boton de subscripcion*/
+    color: #f2f2f2;
+    background-color:#038c5a;
+    font-size: 25px;
+    width: 100%;
+    height: 60px;
+    border: none;
+
+}
+#btn_subs:hover{ /*hover*/
+    background-color: #0b593c;
+    color: #f2f2f2;
+}
