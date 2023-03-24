@@ -1,7 +1,7 @@
 /* --------------------------------inicio vista pagina principal--------------------------------------*/
 body{
     background: radial-gradient(circle,#0f6847,#031d13);
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, condensed 120% sans-serif;
 }
 .menu{
     position: fixed;

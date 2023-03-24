@@ -25,10 +25,10 @@ class CarteleraController extends Controller
     public function index()
     {
         $topSemanales = Http::withToken(config('services.tmdb.token'))
-            ->get('https://api.themoviedb.org/3/trending/all/week?api_key=dd974a88eac4b6306518cfba28e6e350')
+            ->get('https://api.themoviedb.org/3/trending/all/week?api_key=dd974a88eac4b6306518cfba28e6e350&language=es')
             ->json()['results'];
 
-            dump($topSemanales);
+            //dump($topSemanales);
         
         return view('catalogo', ['topSemanales' => $topSemanales]);
     }
