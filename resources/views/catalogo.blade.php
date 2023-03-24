@@ -1,3 +1,8 @@
+<?php
+    use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Http;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +11,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <link href="/bootstrap-5.2.3-dist/css/bootstrap.min.css">
+
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js">
 
     <title>Catálogo</title>
 </head>
@@ -51,27 +60,70 @@
     <section>
     </section>
 
-    <div class="container" id="chido">
-
-    </div>
-
     <!--
-    <div class="card mb-3">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+     Button trigger modal 
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Launch static backdrop modal
+    </button>
+    -->
+
+    <!-- Modal 
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+            </div>
         </div>
     </div>
     -->
+
+
+    <div class="container" id="chido">
+        @foreach ($topSemanales as $topSemanal)
+            <div class="card mb-3" style="width: 250px; height: 375px; margin: 10px; float: left;">
+                <a data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ $topSemanal['id'] }}">
+                    <img class="card-img-top" src="{{ 'https://image.tmdb.org/t/p/w500'.$topSemanal['poster_path'] }}">
+                </a>
+            </div>
+
+            <div class="modal fade" id="staticBackdrop{{ $topSemanal['id'] }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel"> @if ($topSemanal['media_type'] == "tv") {{ $topSemanal['name'] }} @else {{ $topSemanal['title'] }} @endif | Ficha de la película </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{ $topSemanal['overview']}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Comprar</button>
+                    </div>
+                    </div>
+                </div>
+    </div>
+        @endforeach
+    </div>
 </body>
-<!-- <script src="https://gist.github.com/fredyfx/f3cfb8de0edc80a3946606fb8d31046d.js"></script> -->
+
+<!-- <script src="https://gist.github.com/fredyfx/f3cfb8de0edc80a3946606fb8d31046d.js"></script>
 <script>
     const header = document.querySelector('header');
     const section = document.querySelector('section');
     const contenedor = document.querySelector('#chido');
-
+    const contenedorModal = document.querySelector('#modalin');
+    
     //Declaramos nuestra peticion para consulta de api donde está el JSON
     const requestURL = 'https://api.themoviedb.org/3/trending/all/week?api_key=dd974a88eac4b6306518cfba28e6e350'
     //Declaramos un objeto para hacer la solicitud
@@ -102,8 +154,10 @@
         const peliculasJson = JSON.parse(peliculasText);
 
         //llamamos a las funciones para cargar al iniciar
-        topSemanal(peliculasJson);
-        peliculas(peliculasJson);
+        //topSemanal(peliculasJson);
+        //peliculas(peliculasJson);
+        
+        //peliculasModal(peliculasJson);
     }
 
     function topSemanal(jsonObj) {
@@ -157,18 +211,17 @@
             const contenedores = document.createElement('div');
             contenedores.className = 'card mb-3';
             contenedores.style.width = '250px';
-            contenedores.style.height = '370px';
+            contenedores.style.height = '375px';
             contenedores.style.margin = '10px';
             contenedores.style.float = 'left';
 
-            const contBtn = document.createElement('button');
-            contBtn.onclick = 'amonos';
-
+            const direcciona = document.createElement('a');
+            direcciona.setAttribute('id', 'clicModal');
+            
             const imgRsc = document.createElement('img');
             imgRsc.className = 'card-img-top';
             imgRsc.src = 'https://image.tmdb.org/t/p/w500' + pelis[i].poster_path;
             
-
             const pelicula = document.createElement('div');
             pelicula.className = 'card-body';
 
@@ -190,10 +243,10 @@
             //el valor que asignamos proviene de nuestra variable 
             sipnosis.textContent = pelis[i].overview;
 
-            contBtn.appendChild(imgRsc);
+            direcciona.appendChild(imgRsc);
            
             //Mostramos nuestro contenido
-            contenedores.appendChild(contBtn);
+            contenedores.appendChild(direcciona);
             //contenedores.appendChild(pelicula);
             //pelicula.appendChild(titulo);
             //pelicula.appendChild(sipnosis);
@@ -203,5 +256,76 @@
             section.appendChild(contenedor);
         }
     }
+
+    const peliculasModal = document.getElementById('clicModal');
+
+    peliculasModal.addEventListener('click', function(event) {
+        //const pelis = jsonObj['results'];
+
+        //for(var i = 0; i < pelis.length; i++) {
+            const modalDialogD = document.createElement('div');
+            modalDialogD.className = 'modal-dialog';
+
+            const modalContentD = document.createElement('div');
+            modalContentD.className = 'modal-content';
+
+            const modalHeaderD = document.createElement('div');
+            modalHeaderD.className = 'modal-header';
+
+            const modalTitleD = document.createElement('h1');
+            modalTitleD.className = 'modal-title fs-5'
+            //modalTitleD.textContent = pelis[i].title;
+            modalTitleD.textContent = event.titulo;
+
+            const modalBtnCloseD = document.createElement('button'); 
+            modalBtnCloseD.type = 'button';
+            modalBtnCloseD.className = 'btn-close';
+
+            const modalBodyD = document.createElement('div');
+            modalBodyD.className = 'modal-body';
+
+            const modalSipnosisD = document.createElement('p');
+            //modalSipnosisD.textContent = pelis[i].overview;
+            modalSipnosisD.className = 'fst-normal';
+            modalSipnosisD.textContent = event.sipnosis;
+
+            const modalFooterD = document.createElement('div');
+            modalFooterD.className = 'modal-footer';
+
+            const modalBtnCerrarD = document.createElement('button');
+            modalBtnCerrarD.type = 'button';
+            modalBtnCerrarD.className = 'btn btn-secondary';
+            modalBtnCerrarD.textContent = 'Cerrar';
+
+            const modalBtnVerD = document.createElement('button');
+            modalBtnVerD.type = 'button';
+            modalBtnVerD.className = 'btn btn-primary';
+            modalBtnVerD.textContent = 'Wachar';
+        
+
+            //contenedores.appendChild(modalDialogD);
+            modalDialogD.appendChild(modalContentD);
+            modalContentD.appendChild(modalHeaderD);
+            modalContentD.appendChild(modalBodyD);
+            modalContentD.appendChild(modalFooterD);
+            
+            modalHeaderD.appendChild(modalTitleD);
+            modalHeaderD.appendChild(modalBtnCloseD);
+
+            modalBodyD.appendChild(modalSipnosisD);
+            
+            modalFooterD.appendChild(modalBtnCerrarD);
+
+            modalFooterD.appendChild(modalBtnVerD);
+
+            contenedorModal.appendChild(modalDialogD);
+            section.appendChild(contenedorModal);
+        
+        //}
+    });
+
+    peliculasModal.dispatchEvent(miEvento);
+
 </script>
+-->
 </html>
