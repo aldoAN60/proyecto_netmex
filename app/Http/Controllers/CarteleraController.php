@@ -28,9 +28,20 @@ class CarteleraController extends Controller
             ->get('https://api.themoviedb.org/3/trending/all/week?api_key=dd974a88eac4b6306518cfba28e6e350&language=es')
             ->json()['results'];
 
+        $generosArray = Http::withToken(config('services.tmdb.token'))
+            ->get('https://api.themoviedb.org/3/genre/movie/list?api_key=dd974a88eac4b6306518cfba28e6e350&language=es')
+            ->json()['genres'];
+
+        $generos = collect($generosArray)->mapWithKeys(function ($genero){
+            return [$genero['id'] => $genero['name']];
+        }); 
+
             //dump($topSemanales);
         
-        return view('catalogo', ['topSemanales' => $topSemanales]);
+        return view('catalogo', [
+            'topSemanales' => $topSemanales,
+            'generos' => $generos
+        ]);
     }
 
     /**

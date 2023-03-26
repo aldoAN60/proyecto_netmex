@@ -37,6 +37,84 @@
     <!-- ENLACES PARA EL RECURSO DE CSS (PROPIAS DE SUNIVS) -->
     <link rel="stylesheet" href="/css/app.css">
 
+    <!-- ENLACES PARA EL RECURSO DE VIDEO.JS -->
+    <link href="http://vjs.zencdn.net/4.12/video-js.css" rel="stylesheet">
+    <script src="http://vjs.zencdn.net/4.12/video.js"></script>
+
+    <!-- ENLACE PARA TAILWINDCSS -->
+    <!-- <link href="https://cdn.tailwindcss.com" rel="stylesheet"> -->
+
+
+    <style type="text/css">
+        .vjs-default-skin {
+            /* Añadir tu personalización aquí */
+            background-color: #f7f7f7;
+            color: #333;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+        .vjs-default-skin .vjs-big-play-button { 
+            font-size: 2em; 
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .vjs-default-skin .vjs-control-bar {
+            /* Añadir tu personalización aquí */
+            background-color: #333;
+            font-family: 'Helvetica Neue', sans-serif;
+            color: #FFFFFF;
+        }
+
+        .vjs-default-skin .vjs-play-progress {
+            /* Añadir tu personalización aquí */
+            background-color: #000000;
+        }
+
+        .vjs-default-skin .vjs-volume-level {
+            background-color: #000000;
+        }
+
+        .vjs-default-skin .vjs-progress-control .vjs-play-progress:before {
+            background-image: url(icons/nuevo-icono.png);
+        }
+        
+        .contenedorInfo {
+            position: relative;
+            display: inline-block;
+        }
+
+        .estrella:before {
+            content: "\2605";
+            font-size: 25px;
+            color: #f0ad4e;
+            display: inline-block;
+        }
+
+        .spanMas {
+            position: absolute;
+            top: 7.5px;
+            left: 25px; /* ajusta esta propiedad para posicionar el span */
+        }
+
+        .spanPlus {
+            top: 6px;
+            left: 60px;
+        }
+
+        .spanPlusPlus {
+            top: 8px;
+            left: 30px;
+        }
+        
+        .spanPlusPlus li {
+            float: left;
+            display: block;
+            text-decoration: none;
+            margin-left: 4px;
+        }
+    </style>
+
     <title>Catálgo</title>
 </head>
 <!-- TERMINA ETIQUETA HEAD -->
@@ -66,7 +144,6 @@
 
         <!-- CONTENEDOR CARRUSEL -->
             <div class="carousel-inner">
-
                 <!-- DECLARAMOS UNA PORTADA -->
                 <div class="carousel-item active">
                     <img src="/img/imgPruebas/ironMan.jpg" alt="Iron Man 3" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400">
@@ -81,9 +158,13 @@
                 -->
                 <!-- MOSTRAMOS TODAS Y CADA UNA DE LAS PORTADAS DE LAS PELÍCULAS -->
                 @foreach ($topSemanales as $topSemanal)
-                    <div class="carousel-item">
-                        <img src="{{ 'https://image.tmdb.org/t/p/w500'.$topSemanal['backdrop_path'] }}" alt="@if ($topSemanal['media_type'] == 'tv') {{ $topSemanal['name'] }} @else {{ $topSemanal['title'] }} @endif" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400">
+                <div class="carousel-item">
+                    <img src="{{ 'https://image.tmdb.org/t/p/w500'.$topSemanal['backdrop_path'] }}" alt="@if ($topSemanal['media_type'] == 'tv') {{ $topSemanal['name'] }} @else {{ $topSemanal['title'] }} @endif" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>@if ($topSemanal['media_type'] == 'tv') {{ $topSemanal['name'] }} @else {{ $topSemanal['title'] }} @endif</h5>
+                        
                     </div>
+                </div>
                 @endforeach
             </div>
 
@@ -143,7 +224,29 @@
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body" style="background: #038c5a; font: condensed 120% sans-serif; font-size: 15pt;">
-                            {{ $topSemanal['overview']}}
+                            <div class="container" style="width:60%; float: left;">
+                                <video id="video" class="video-js vjs-default-skin" style="margin-bottom: 15px;" controls preload="none" width="444" height="250" poster="{{ 'https://image.tmdb.org/t/p/w500'.$topSemanal['backdrop_path'] }}"  data-setup="{}">
+                                    <source src="/videos/conoce2motolika.mp4" type='video/mp4'>
+                                    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+                                </video>
+                                <div class="mt-2">
+                                    <div class="contenedorInfo">
+                                        <div class="estrella text-warning w-4"></div>
+                                        <span class="ml-1 spanMas">{{ round($topSemanal['vote_average'] * 10) .'%' }}</span>
+                                        <span class="spanMas spanPlus" >|</span>
+                                        <span class="spanMas spanPlusPlus">
+                                            <ul>
+                                            @foreach($topSemanal['genre_ids'] as $genero)
+                                                <li>{{ $generos->get($genero) }}@if(!$loop->last), @endif</li>
+                                            @endforeach
+                                            </ul>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container" style="width:40%; float: left;">
+                                {{ $topSemanal['overview']}}
+                            </div>
                         </div>
                         <div class="modal-footer" style="background: #038c5a; --bs-modal-footer-border-color: #038c5a;">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background: #000000; --bs-btn-border-color: #000000;">Cerrar</button>
