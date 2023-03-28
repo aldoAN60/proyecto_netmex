@@ -1,0 +1,34 @@
+.paypal-success{
+    margin-top: 7%;
+    margin-bottom: 7%;
+}
+.cont-recomendations{
+    justify-content: space-around;
+    display: flex;
+    flex-wrap: wrap;
+}
+.cont-recomendations div{
+    margin-bottom: 2%;
+}
+.card-img-overlay{
+    padding: 0;
+    display: flex;
+    align-items: flex-end;
+    cursor: pointer;
+}
+.view-movie-content{
+    display: none;
+    background-color:#032733 ;
+    width: 100%;
+    color: #69bf41;
+    font-size: 17px;
+}
+.view-movie-content:hover{
+    background-color: #69bf41;
+    color:#032733;
+}
+
+.card-img-overlay:hover > .view-movie-content{ 
+    display: block;
+    margin-bottom: -7px;
+}

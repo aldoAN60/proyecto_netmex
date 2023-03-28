@@ -8,7 +8,7 @@
         <div class="col-sm-10">
             <div class="cont_btns">
                 <button type="button" class="btn btn-primary" id="btn_paypal"><a href=" {{route('paypal-donation') }}" alt="">donacion por paypal</a></button>
-                <button type="button" class="btn" id="btn_login"><a href="">iniciar sesion</a></button>
+                <button type="button" class="btn" id="btn_login"><a href="{{route('sign_up')}}">iniciar sesion</a></button>
             </div>
         </div>
     </div>

@@ -62,13 +62,14 @@ a{
     align-content: center;
 }
 
-#btn_ini{ /*boton de suscribirse*/
-    background-color:#04bf7b;
-    color: #f2f2f2;
+#input-session{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-#btn_ini:hover{
-    background-color:#038c5a;
-    color: #f2f2f2;
+#input-session form{
+    width: 75%;
+
 }
 .titulos{ /* clase que modifica las etiquetas H*/
     color: #f2f2f2;

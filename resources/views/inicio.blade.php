@@ -8,9 +8,20 @@
             <h1 class="titulos">tus peliculas favoritas en un mismo lugar</h1>
             <h5 class="titulos">Disfruta donde quieras y cuando quieras</h5>
             <p class="parrafos">¿Quieres ver Netmex ya? incresa tu email para crear una cuenta</p>
-            <div class="input-group input-group-lg">
-                <input type="text" class="form-control" placeholder="correo electronico" aria-label="Correo electronico" aria-describedby="button-addon2">
-                <button class="btn" type="button" id="btn_ini"><a href="{{ route('sign_up')}}">Comenzar ></a></button>
+            <div class="input-group input-group-lg" id="input-session">
+                <form action="{{url('/registro_email')}}" method="POST">
+                    @csrf
+                    <div class="input-group input-group-lg" >
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">@</span>
+                            <input name="start_email"type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="button-addon2">
+                            <button class="btn btn-outline-success" id="button-addon2">Comenzar</button>
+                        </div>
+                    </div>
+                    @error('start_email')
+                    <p class="parrafos">{{$message}}</p>
+                    @enderror
+                </form>
             </div>
         </div>
     </div>

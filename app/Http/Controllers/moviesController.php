@@ -2,41 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\contacto_clientes;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Http;
 
-class contactoController extends Controller
+class moviesController extends Controller
 {
     
     public function index()
     {
-        return view('contacto');
+        $popularMovies = Http::withToken(config('services.tmdb.token'))
+        ->get('https://api.themoviedb.org/3/movie/popular?api_key=197b965cfaac7b58e372bf8aeb7acc3a&language=es-MX&page=1')
+        ->json()['results'];
+        #$mi_objeto = json_decode(json_encode($mi_array_asociativo));
+        #dump($popularMovies);
+        return view('paypal-success',compact('popularMovies'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         //
     }
 
-    
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        
-        $request->validate([
-            'nombre'=>'required|max:50|min:2',
-            'n_subscriptor'=> 'min:8',
-            'email'=>'required|email',
-            'asunto'=>'required|max:50|min:5',
-            'descripcion'=>'required|min:10'
-        ]);
-        $data = new contacto_clientes;
-        $data->nombre = $request->input('nombre');
-        $data->n_subscriptor = $request->input('n_subscriptor');
-        $data->email = $request->input('email');
-        $data->asunto = $request->input('asunto');
-        $data->descripcion = $request->input('descripcion');
-        $data->save();
-        return back()->with('status','Hemos recibimos su mensaje, por favor espere nuestra respuesta');
+        //
     }
 
     /**
@@ -47,7 +48,7 @@ class contactoController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**

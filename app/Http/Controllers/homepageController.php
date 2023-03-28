@@ -2,41 +2,49 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\contacto_clientes;
 use Illuminate\Http\Request;
 
-class contactoController extends Controller
+class homepageController extends Controller
 {
-    
+
     public function index()
     {
-        return view('contacto');
+        return view('inicio');
     }
 
+    public function sign_up_email(Request $request){
+        $request->validate([
+            'start_email'=> 'required|email',
+        ]
+        ,
+        [
+            'start_email.email'=>'es necesario agregar un correo electronico valido',
+            'start_email.required'=>'es necesario agregar un correo electronico'
+        ]);
+        $email_RS = $request->input('start_email');
+        $status='muchas gracias ahora chinga tu madre';
+        return redirect('/sign_up')->with(compact('status','email_RS')); 
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         //
     }
 
-    
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        
-        $request->validate([
-            'nombre'=>'required|max:50|min:2',
-            'n_subscriptor'=> 'min:8',
-            'email'=>'required|email',
-            'asunto'=>'required|max:50|min:5',
-            'descripcion'=>'required|min:10'
-        ]);
-        $data = new contacto_clientes;
-        $data->nombre = $request->input('nombre');
-        $data->n_subscriptor = $request->input('n_subscriptor');
-        $data->email = $request->input('email');
-        $data->asunto = $request->input('asunto');
-        $data->descripcion = $request->input('descripcion');
-        $data->save();
-        return back()->with('status','Hemos recibimos su mensaje, por favor espere nuestra respuesta');
+        //
     }
 
     /**

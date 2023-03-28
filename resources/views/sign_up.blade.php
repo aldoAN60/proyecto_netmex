@@ -7,6 +7,9 @@
 @section('content')
     
 <main class="cont-form">
+    @if (session('status'))
+    <h1 class="parrafos">{{session('status')}}</h1>
+@endif
     <div class="row">
         <div class="col">
             <div class="sign-up">
@@ -18,7 +21,9 @@
                     A nosotros tampoco nos gustan los trámites.
                     </p>
                     <div class="mb-4">
-                        <input name="email" type="email" class="form-control" id="frm-email" placeholder="Email" aria-describedby="emailHelp" required>
+                        @if (session('email_RS'))
+                        <input name="email" type="email" class="form-control" id="frm-email" placeholder="Email" aria-describedby="emailHelp" value="{{session('email_RS')}}" required>
+                        @endif
                     </div>
                     <div class="mb-4">
                         <input name="password" type="password" class="form-control" id="frm-password" placeholder="contraseña" required>

@@ -9,6 +9,9 @@
 @endsection
 @section('content')
 <main class="paypal-sec">
+    @if (session('status'))
+        <h1>{{session('status')}}</h1>
+    @endif
     <div class="row align-items-center">
         <div class="col-7">
             <div class="paypal-text">
@@ -29,32 +32,34 @@
                     @csrf
                     <div class="input-group">
                         <div class="input-group-text">
-                            <input class="form-check-input mt-1" id="choose_5" type="checkbox" value="5" onclick="selection(this)" >
+                            <input name="check_5" class="form-check-input mt-1" id="choose_5" type="checkbox" value="5" onclick="selection(this)" >
                         </div>
-                        <input type="text" class="form-control" placeholder="$5" disabled>
+                        <input name="amount_5" type="text" class="form-control" placeholder="$5" value="5" disabled>
                     </div>
                     <div class="input-group">
                         <div class="input-group-text">
-                            <input class="form-check-input mt-1"id="choose_10" type="checkbox" value="10" onclick="selection(this)">
+                            <input name="check_10"class="form-check-input mt-1"id="choose_10" type="checkbox" value="10" onclick="selection(this)">
                         </div>
                         <input type="text" class="form-control" placeholder="$10" disabled>
                     </div>
                     <div class="input-group">
                         <div class="input-group-text">
-                            <input class="form-check-input mt-1"id="choose_15" type="checkbox" value="15" onclick="selection(this)">
+                            <input name="check_15" class="form-check-input mt-1"id="choose_15" type="checkbox" value="15" onclick="selection(this)">
                         </div>
                         <input type="text" class="form-control" placeholder="$15" disabled>
                     </div>
                     <div class="input-group">
                         <div class="input-group-text">
-                            <input class="form-check-input mt-0" id="choose_any" type="checkbox" onclick="selection(this)">
+                            <input class="form-check-input mt-0" id="choose_any" name="check_any" type="checkbox" onclick="selection(this)">
                         </div>
-                        <input type="number" class="form-control" placeholder="otra cantidad">
+                        <input type="number" id="any_amount" name="any_amount" class="form-control" placeholder="otra cantidad" value="{{old('any_amount')}}" disabled>
+                        
                     </div>
+                    @error('any_amount')
+                        <p>{{$message}}</p>
+                    @enderror
                     <div class="cont-pp-btn">
-                    <!--    <a href="">donar</a>-->
-                    <button class="btn btn-success">aqui va un boton de paypal</button> 
-                
+                        <button class="btn btn-success" id="paypal-button" disabled>donar</button> 
                     </div>
                 </form>
             </div>
