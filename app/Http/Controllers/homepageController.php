@@ -6,12 +6,22 @@ use Illuminate\Http\Request;
 
 class homepageController extends Controller
 {
-
+    /*
+     * @description: retorna la vista inicio 
+     * @author: Aldo Armenta 29/03/2023
+     * @param: view: inicio 
+     * * 
+    */
     public function index()
     {
         return view('inicio');
     }
-
+    /*
+     * @description: validar email y enviar a la vista de inicio de sesion
+     * @author: Aldo Armenta 29/03/2023
+     * @param: Request: email a validar 
+     * * 
+    */
     public function sign_up_email(Request $request){
         $request->validate([
             'start_email'=> 'required|email',
@@ -22,7 +32,7 @@ class homepageController extends Controller
             'start_email.required'=>'es necesario agregar un correo electronico'
         ]);
         $email_RS = $request->input('start_email');
-        $status='muchas gracias ahora chinga tu madre';
+        $status='ya solo quedan pocos pasos';
         return redirect('/sign_up')->with(compact('status','email_RS')); 
     }
 

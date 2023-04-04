@@ -8,14 +8,17 @@ use Illuminate\Support\Facades\Http;
 
 class moviesController extends Controller
 {
-    
+        /*
+     * @description: consultar API de themovieDB y mostrar las peliculas mas populares
+     * @author: Aldo Armenta 29/03/2023
+     * @param: JSON: mostrar peliculas mas populares 
+     * * 
+    */
     public function index()
     {
         $popularMovies = Http::withToken(config('services.tmdb.token'))
         ->get('https://api.themoviedb.org/3/movie/popular?api_key=197b965cfaac7b58e372bf8aeb7acc3a&language=es-MX&page=1')
         ->json()['results'];
-        #$mi_objeto = json_decode(json_encode($mi_array_asociativo));
-        #dump($popularMovies);
         return view('paypal-success',compact('popularMovies'));
     }
 

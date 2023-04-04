@@ -7,7 +7,12 @@ use Illuminate\Http\Request;
 
 class contactoController extends Controller
 {
-    
+    /*
+     * @description: retorna la vista contacto 
+     * @author: Aldo Armenta 29/03/2023
+     * @param: view: contacto 
+     * * 
+    */
     public function index()
     {
         return view('contacto');
@@ -18,7 +23,12 @@ class contactoController extends Controller
         //
     }
 
-    
+        /*
+     * @description: validar parametros de formulario de contacto
+     * @author: Aldo Armenta 29/03/2023
+     * @param: Request: insertar mensaje en BD
+     * * 
+    */
     public function store(Request $request)
     {
         
@@ -39,46 +49,25 @@ class contactoController extends Controller
         return back()->with('status','Hemos recibimos su mensaje, por favor espere nuestra respuesta');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //

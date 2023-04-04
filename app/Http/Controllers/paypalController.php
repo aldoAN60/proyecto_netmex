@@ -21,6 +21,12 @@ class paypalController extends Controller
 {
     private $apiContext;
     private $amount_pay;
+        /*
+     * @description: metodo costructor para trabajar con la API de PayPal 
+     * @author: Aldo Armenta 29/03/2023
+     * @param: ApiContext: conectar la api de paypal 
+     * * 
+    */
     public function __construct(){
         $paypal_config = Config::get('paypal');
         $this->apiContext = new ApiContext(
@@ -30,7 +36,12 @@ class paypalController extends Controller
             )
         );
     }
-    
+        /*
+     * @description: validamos los checkbox del formulario y redireccionamos a la API de paypal 
+     * @author: Aldo Armenta 29/03/2023
+     * @param: Request: validacion de checkbox 
+     * * 
+    */
     public function payment_paypal(Request $request){
     
         if(isset($_POST['check_5'])){
@@ -81,7 +92,12 @@ class paypalController extends Controller
             }
             
     }
-    
+        /*
+     * @description: se valida el status del pago y retorna una vista 
+     * @author: Aldo Armenta 29/03/2023
+     * @param: APIcontext: validacion de pago  
+     * * 
+    */
     public function paypal_status(Request $request){
         
         $paymentId = $request->input('paymentId');
