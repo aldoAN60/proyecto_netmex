@@ -4,6 +4,7 @@ use App\Http\Controllers\homepageController;
 use App\Http\Controllers\moviesController;
 use App\Http\Controllers\paypalController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CarteleraController;
 
 Route::get('/donacion-exitosa', [moviesController::class,'index'])->name('movies.index');
 Route::get('/movies/{movie}', 'moviesController@show')->name('movies.show');
@@ -22,5 +23,10 @@ Route::post('/contacto', [contactoController::class,'store'])->name('contacto-po
 
 Route::post('/paypal/pay', [paypalController::class,'payment_paypal'])->name('payment');
 
+Route::get('/catalogo', function (){
+    return view('catalogo');
+});
+
+Route::get('/catalogo', [CarteleraController::class, 'index'])->name('cartelera');
 Route::get('/paypal/status', [paypalController::class,'paypal_status'])->name('status');
 #Route::get('/paypal-success', [paypalController::class,'index'])->name('paypal-success');
