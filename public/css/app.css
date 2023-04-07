@@ -3,6 +3,7 @@ body{
     background: radial-gradient(circle,#0f6847,#031d13);
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+/*inicio primera seccion*/
 .menu{
     position: fixed;
     top: 0;
@@ -71,11 +72,19 @@ a{
     width: 75%;
 
 }
+/* * * * * * * * fin primera seccion* * * * * * * * /
+/*inicio segunda seccion*/
+
 .titulos{ /* clase que modifica las etiquetas H*/
     color: #f2f2f2;
 }
 .parrafos{ /* clase que modifica las etiquetas P*/
     color:#f2f2f2;
+}
+.errores{
+    font-size: 17px;
+    font-weight: bold;
+    color: #f10f07;
 }
 .img{ /*valores de las imagenes del carrusel*/
     height: 600px;
@@ -94,11 +103,15 @@ a{
     color: antiquewhite;
     
 }
+/*fin segunda seccion*/
 .jump_line{ /*separador HR*/
     width: 100%;
     margin-top: 5%;
     margin-bottom: 5%;
     border: 5px solid #8bbf8a;
+}
+.img-fluid{
+    filter: drop-shadow(1px 1px 5px #2affb1);
 }
 #text_disp{ /*texto de la segunda seccion de la pagina main*/
 width: 100%;

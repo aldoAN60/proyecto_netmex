@@ -28,8 +28,8 @@ class homepageController extends Controller
         ]
         ,
         [
-            'start_email.email'=>'es necesario agregar un correo electronico valido',
-            'start_email.required'=>'es necesario agregar un correo electronico'
+            'start_email.email'=>'Es necesario agregar un correo electronico valido',
+            'start_email.required'=>'Es necesario agregar un correo electronico'
         ]);
         $email_RS = $request->input('start_email');
         $status='ya solo quedan pocos pasos';

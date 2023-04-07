@@ -11,7 +11,7 @@ Route::get('/movies/{movie}', 'moviesController@show')->name('movies.show');
 Route::view('/','inicio')->name('inicio');
 Route::view('/sign_up','sign_up')->name('sign_up');
 
-Route::post('/registro_email',[homepageController::class,'sign_up_email']);
+Route::post('/registro_email',[homepageController::class,'sign_up_email'])->name('registro_inicio');;
 
 Route::view('/paypal-donation','paypal-donation')->name('paypal-donation');
 Route::view('/contacto', 'contacto')->name('contacto');

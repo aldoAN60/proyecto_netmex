@@ -7,9 +7,9 @@
         <div class="slogan">
             <h1 class="titulos">tus peliculas favoritas en un mismo lugar</h1>
             <h5 class="titulos">Disfruta donde quieras y cuando quieras</h5>
-            <p class="parrafos">¿Quieres ver Netmex ya? incresa tu email para crear una cuenta</p>
+            <p class="parrafos">¿Quieres ver Netmex ya? ingresa tu email para crear una cuenta</p>
             <div class="input-group input-group-lg" id="input-session">
-                <form action="{{url('/registro_email')}}" method="POST">
+                <form action="{{route('registro_inicio')}}" method="POST">
                     @csrf
                     <div class="input-group input-group-lg" >
                         <div class="input-group mb-3">
@@ -18,11 +18,11 @@
                             <button class="btn btn-outline-success" id="button-addon2">Comenzar</button>
                         </div>
                     </div>
-                    @error('start_email')
-                    <p class="parrafos">{{$message}}</p>
-                    @enderror
                 </form>
             </div>
+            @error('start_email')
+            <p class="errores">{{$message}}</p>
+            @enderror
         </div>
     </div>
     <div class="col-sm-5">
