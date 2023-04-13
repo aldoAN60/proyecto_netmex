@@ -23,6 +23,7 @@
     <!-- ENLACES PARA EL RECURSO DE BOOTSTRAP (CSS) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/bootstrap-5.2.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
     <!-- ENLACES PARA EL RECURSO DE BOOTSTRAP (ARCHIVO DE CONFIGURACIÓN) -->
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">    
@@ -47,7 +48,6 @@
 
     <style type="text/css">
         .vjs-default-skin {
-            /* Añadir tu personalización aquí */
             background-color: #f7f7f7;
             color: #333;
             font-family: 'Helvetica Neue', sans-serif;
@@ -110,8 +110,13 @@
         .spanPlusPlus li {
             float: left;
             display: block;
-            text-decoration: none;
             margin-left: 4px;
+            width: 53px;
+        }
+
+        span ul li a:hover {
+            color: #F0F0F0;
+            text-decoration: none;
         }
     </style>
 
@@ -157,12 +162,18 @@
                 </div>
                 -->
                 <!-- MOSTRAMOS TODAS Y CADA UNA DE LAS PORTADAS DE LAS PELÍCULAS -->
+                <?php
+                /**
+                * @description: Mostramos las películas en carrusel, replicando el código por cada registro ($topSemanal) 
+                * @author: Alfredo Serrano - 28/03/23
+                * @param json: Película a mostrar
+                **/
+                ?>
                 @foreach ($topSemanales as $topSemanal)
                 <div class="carousel-item">
                     <img src="{{ 'https://image.tmdb.org/t/p/w500'.$topSemanal['backdrop_path'] }}" alt="@if ($topSemanal['media_type'] == 'tv') {{ $topSemanal['name'] }} @else {{ $topSemanal['title'] }} @endif" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>@if ($topSemanal['media_type'] == 'tv') {{ $topSemanal['name'] }} @else {{ $topSemanal['title'] }} @endif</h5>
-                        
+                        <h5>@if ($topSemanal['media_type'] == 'tv') {{ $topSemanal['name'] }} @else {{ $topSemanal['title'] }} @endif</h5>    
                     </div>
                 </div>
                 @endforeach
@@ -209,54 +220,111 @@
 
     <!-- CONTENEDOR DE TOP SEMANAL -->
     <div class="container-fluid" id="chido">
+    
+    <?php
+    /**
+    * @description: Mostramos las películas, replicando el código por cada registro ($$topSemanal) 
+    * @author: Alfredo Serrano - 28/03/23
+    * @param json: Película a mostrar
+    **/
+    ?>
+        <!-- POR CADA REGISTRO -->
         @foreach ($topSemanales as $topSemanal)
+            <!-- DIV CONTENEDOR DE LA PELÍCULA -->
             <div class="card mb-3" style="width: 250px; height: 375px; margin: 10px; float: left; background: none;">
+                <!-- ETIQUETA <a> QUE ACTIVA MODAL -->
                 <a data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ $topSemanal['id'] }}" style="cursor: pointer;">
+                    <!-- ETIQUETA <img> LA CUAL, MUESTRA LA PORTADA -->
                     <img class="card-img-top" src="{{ 'https://image.tmdb.org/t/p/w500'.$topSemanal['poster_path'] }}">
                 </a>
             </div>
 
+            <!-- ETIQUETA MODAL CONTENEDORA -->
             <div class="modal fade" id="staticBackdrop{{ $topSemanal['id'] }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <!-- CON ESTE DIV, CON SU CLASE, DEFINIMOS EL TAMAÑO DE NUESTRO MODAL -->
                 <div class="modal-dialog modal-lg">
+                    <!-- AQUÍ INICIA EL CONTENIDO DE NUESTRO MODAL (HEAD, BODY, FOOTER) -->
                     <div class="modal-content">
+                        <!-- HEAD DEL MODAL -->
                         <div class="modal-header" style="color: #FFFFFF; background: #0F0F0F;">
+                            <!-- TÍTULO DEL MODAL -->
+                            <!-- 
+                            -   CON IF VALIDAMOS SI EL VALOR DE 'media_type' ES IGUAL A TV, DE SER ASÍ, EL CAMPO A MOSTRAR 
+                            -   EN EL TÍTULO DEL MODAL ES name SI NO ES TV, ENTONCES ES movie.
+                            -   DE ESTA MANERA MOSTRAREMOS SIN ERRORES EL NOMBRE DE LA SERIE O DE LA PELÍCULA
+                            -->
                             <h1 class="modal-title fs-5" id="staticBackdropLabel"> @if ($topSemanal['media_type'] == "tv") {{ $topSemanal['name'] }} @else {{ $topSemanal['title'] }} @endif | NETMEX </h1>
+                            <!-- BOTÓN CERRAR DEL MODAL -->
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body" style="background: #038c5a; font: condensed 120% sans-serif; font-size: 15pt;">
+                        <!-- ESTE ES EL BODY DE NUESTRO MODAL -->
+                        <div class="modal-body" style="background: #038c5a; font: condensed 120% sans-serif; font-size: 15pt; color: #FFFFFF;">
+                            <!-- CREAMOS UN DIV CON CLASE CONTAINER PARA TENER UN MANEJO AMPLIO DEL CONTENIDO -->
                             <div class="container" style="width:60%; float: left;">
+                                <!-- ETIQUETA VÍDEO QUE MUESTRA EL TRAILER LA PELÍCULA -->
                                 <video id="video" class="video-js vjs-default-skin" style="margin-bottom: 15px;" controls preload="none" width="444" height="250" poster="{{ 'https://image.tmdb.org/t/p/w500'.$topSemanal['backdrop_path'] }}"  data-setup="{}">
                                     <source src="/videos/conoce2motolika.mp4" type='video/mp4'>
-                                    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+                                    <p class="vjs-no-js">Para ver este vídeo debes habilitar JavaScript <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
                                 </video>
+                                <!-- CON ESTO TENEMOS UN MARGIN TOP -->
                                 <div class="mt-2">
+                                    <!-- OTRO CONTENEDOR QUE DA ESTILO A LOS METADATOS -->
                                     <div class="contenedorInfo">
+                                        <!-- CON CSS CREAMOS UNA ESTRELLA, PARA ESO USAMOS EL DIV -->
                                         <div class="estrella text-warning w-4"></div>
+                                        <!-- EN ESTA MOSTRAOS LA PUNTUACIÓN DE LA PELÍCULA -->
                                         <span class="ml-1 spanMas">{{ round($topSemanal['vote_average'] * 10) .'%' }}</span>
-                                        <span class="spanMas spanPlus" >|</span>
+                                        <!-- ESTE SÍMBOLO AYUDARÁ A SEPARAR LA CALIFICACIÓN DE LOS GÉNEROS DE LA PELÍCULA -->
+                                        <span class="spanMas spanPlus">| &nbsp;</span>
+                                        <!-- CON ESTE SPAN, MOSTRAMOS NUESTOS GENEROS -->
                                         <span class="spanMas spanPlusPlus">
                                             <ul>
-                                            @foreach($topSemanal['genre_ids'] as $genero)
-                                                <li>{{ $generos->get($genero) }}@if(!$loop->last), @endif</li>
-                                            @endforeach
+                                                <?php   
+                                                /**
+                                                * @description: Imprimimos en pantalla, en la etiqueta li la fecha de estreno de cada película o fecha de transmisión 
+                                                * @author: Alfredo Serrano - 11/04/23
+                                                * @param json: id de genero
+                                                **/
+                                                ?>
+                                            
+                                                <li> @if ($topSemanal['media_type'] == "tv") {{ Str::limit($topSemanal['first_air_date'], 4, '') }} @else {{ Str::limit($topSemanal['release_date'], 4, '') }} @endif<span style="font-weight: 900; line-height: 1em;">·</span>&nbsp;</li>
+                                                <li style="margin-left: 0px;"> {{ strtoupper($topSemanal['original_language']) }} </li>
+                                            </ul>
+                                        </span>
+                                        <i class="bi bi-film" style="font-size: 18px;"></i></i>
+                                        <span class="float-end">
+                                            <ul style="padding-left: 4px;">
+                                                <?php   
+                                                /**
+                                                * @description: Imprimimos en pantalla, en la etiqueta li los generos de cada película  
+                                                * @author: Alfredo Serrano - 28/03/23
+                                                * @param json: id de genero
+                                                **/
+                                                ?>
+                                                @foreach($topSemanal['genre_ids'] as $genero)
+                                                    <li><a href="#"> {{ $generos->get($genero) }}@if (!$loop->last)&nbsp;<span style="font-weight: 900; line-height: 1em;">·</span>&nbsp;@endif </a></li>
+                                                @endforeach
                                             </ul>
                                         </span>
                                     </div>
                                 </div>
                             </div>
+                            <!-- CON ESTE CONTENEDOR MOSTRAMOS LA DESCRIPCIÓN DE NUESTRA PELÍCULA (SIPNÓSIS) -->
                             <div class="container" style="width:40%; float: left;">
                                 {{ $topSemanal['overview']}}
                             </div>
                         </div>
+                        <!-- FOOTER DEL MODAL, CONTIENE UN BOTÓN PARA CERRAR EL MODAL Y OTRO PARA IR DIRECTO A LA PELÍCULA -->
                         <div class="modal-footer" style="background: #038c5a; --bs-modal-footer-border-color: #038c5a;">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background: #000000; --bs-btn-border-color: #000000;">Cerrar</button>
-                            <button type="button" class="btn btn-primary" style="background: #0b593c; --bs-btn-border-color: #0b593c; --bs-btn-hover-border-color: #565e64; width: 128px;">Wachar       <i class="fa fa-play" style="font-size:14px"></i></button>
+                            <a type="button" href="" class="btn btn-secondary" data-bs-dismiss="modal" style="background: #000000; --bs-btn-border-color: #000000;">Cerrar</a>
+                            <a type="button" href="{{ route('catalogo.show', $topSemanal['id']) }}"  class="btn btn-primary" style="background: #0b593c; --bs-btn-border-color: #0b593c; --bs-btn-hover-border-color: #565e64; width: 128px;">Wachar       <i class="fa fa-play" style="font-size:14px"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         @endforeach
     </div>
+    @yield('content')
 
     <footer class="main_footer">
         <h4 class="titulos">Preguntas? llama al 477 166 2121</h4>
@@ -267,5 +335,7 @@
             <li><a  href="http://">cuenta</a></li>
         </ul>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

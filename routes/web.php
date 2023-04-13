@@ -10,9 +10,9 @@ Route::get('/inicio', function () {
 Route::get('/sign_up', function (){
     return view('sign_up');
 });
-
 Route::get('/catalogo', function (){
     return view('catalogo');
 });
 
-Route::get('/catalogo', [CarteleraController::class, 'index'])->name('cartelera');
+Route::get('/catalogo/{id}', [CarteleraController::class, 'show'])->name('catalogo.show');
+Route::get('/catalogo', [CarteleraController::class, 'index'])->name('catalogo.index');
