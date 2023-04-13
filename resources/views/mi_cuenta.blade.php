@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.HTML-guest')
 
 @section('title','Mi cuenta')
 

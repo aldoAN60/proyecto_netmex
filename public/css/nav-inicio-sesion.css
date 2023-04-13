@@ -1,0 +1,38 @@
+
+.navbar-nav{
+    margin-left:25%;
+  margin-bottom:1%;
+  margin-top:.5%; 
+ font-size: 16px; 
+}
+.navbar-nav li{
+text-transform: uppercase;
+ margin-left: 3%;
+ margin-bottom: -5%;
+
+}
+.navbar-nav a{
+ width: 110px;
+ text-align: center;
+ padding: 0%;
+ 
+}
+.navbar .navbar-brand{
+margin-left: 50%;
+margin-bottom: -10%;
+margin-top: -10%; 
+ 
+}
+.navbar{display:grid;
+ top:0;
+ grid-template-columns: repeat(4,auto); 
+ margin-bottom:15%;
+ margin-right: 30px; 
+ position:fixed; 
+ width:100%; 
+ background-color:#3752357c;
+ z-index:2;
+}
+.contenido{
+margin-top:7%; 
+}
