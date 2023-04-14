@@ -263,7 +263,13 @@
                             <div class="container" style="width:60%; float: left;">
                                 <!-- ETIQUETA VÍDEO QUE MUESTRA EL TRAILER LA PELÍCULA -->
                                 <video id="video" class="video-js vjs-default-skin" style="margin-bottom: 15px;" controls preload="none" width="444" height="250" poster="{{ 'https://image.tmdb.org/t/p/w500'.$topSemanal['backdrop_path'] }}"  data-setup="{}">
-                                    <source src="/videos/conoce2motolika.mp4" type='video/mp4'>
+                                @if($topSemanal['id'] == "594767") <source src="/videos/shazam.mp4" @else src="/videos/conoce2motolika.mp4" @endif type='video/mp4'>
+                                @if($topSemanal['id'] == "76600") <source src="/videos/avatar.mp4" @else src="/videos/conoce2motolika.mp4" @endif type='video/mp4'>
+                                @if($topSemanal['id'] == "603692") <source src="/videos/jw4.mp4" @else src="/videos/conoce2motolika.mp4" @endif type='video/mp4'>
+                                @if($topSemanal['id'] == "502356") <source src="/videos/smb.mp4" @else src="/videos/conoce2motolika.mp4" @endif type='video/mp4'>
+                                @if($topSemanal['id'] == "677179") <source src="/videos/c3.mp4" @else src="/videos/conoce2motolika.mp4" @endif type='video/mp4'>
+                                @if($topSemanal['id'] == "640146") <source src="/videos/antman.mp4" @else src="/videos/conoce2motolika.mp4" @endif type='video/mp4'>
+                                @if($topSemanal['id'] == "315162") <source src="/videos/pib2.mp4" @else src="/videos/conoce2motolika.mp4" @endif type='video/mp4'>
                                     <p class="vjs-no-js">Para ver este vídeo debes habilitar JavaScript <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
                                 </video>
                                 <!-- CON ESTO TENEMOS UN MARGIN TOP -->
