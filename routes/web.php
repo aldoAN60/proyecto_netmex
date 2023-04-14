@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/donacion-exitosa', [moviesController::class,'index'])->name('movies.index');
 Route::get('/movies/{movie}', 'moviesController@show')->name('movies.show');
-
 Route::view('/','inicio')->name('inicio');
 Route::view('/sign_up','sign_up')->name('sign_up');
 
