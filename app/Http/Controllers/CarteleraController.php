@@ -73,7 +73,14 @@ class CarteleraController extends Controller
      */
     public function show($id)
     {
-        //
+   
+        $pelicula = Http::withToken(config('services.tmdb.token'))
+            ->get('https://api.themoviedb.org/3/movie/'.$id.'?api_key=dd974a88eac4b6306518cfba28e6e350&language=es')
+            ->json();
+
+        //dump($pelicula);
+
+        return view('catalogo_show')->with('pelicula', $pelicula);
     }
 
     /**

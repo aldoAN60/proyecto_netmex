@@ -21,12 +21,12 @@ Route::get('/contacto',[contactoController::class,'index'])->name('contacto');
 Route::post('/contacto', [contactoController::class,'store'])->name('contacto-post');
 
 Route::post('/paypal/pay', [paypalController::class,'payment_paypal'])->name('payment');
-
 Route::get('/catalogo', function (){
     return view('catalogo');
 });
 
-Route::get('/catalogo', [CarteleraController::class, 'index'])->name('cartelera');
+Route::get('/catalogo/{id}', [CarteleraController::class, 'show'])->name('catalogo.show');
+Route::get('/catalogo', [CarteleraController::class, 'index'])->name('catalogo.index');
 Route::get('/paypal/status', [paypalController::class,'paypal_status'])->name('status');
 #Route::get('/paypal-success', [paypalController::class,'index'])->name('paypal-success');
 use  App\Http\Controllers\AvatarController;
