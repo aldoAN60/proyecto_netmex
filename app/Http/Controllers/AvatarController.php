@@ -36,21 +36,37 @@ class AvatarController extends Controller
      */
     public function store(Request $request)
     {
-        // $response = implode(' ;' , $request->all());
+        // @description validar existencia de imegen en bd y sustituir
+
+
+
         $user = auth()->user();
 
-        if(isset($request['avatar'])) {
-        $user->clearMediaCollection('avatar');
-        $user->addMediaFromRequest('avatar')->toMediaCollection('avatar');
-          }
-         if(isset($request['perfil'])){
-        $user->clearMediaCollection('perfil');
-          
-            $user->addMediaFromRequest('perfil')->toMediaCollection('perfil');
+        $defaultPerfilUrl = 'https://thumbs.dreamstime.com/z/l%C3%ADnea-an%C3%B3nima-icono-del-avatar-hombre-ejemplo-vector-perfil-de-defecto-aislado-en-blanco-dise%C3%B1o-masculino-estilo-esquema-127784971.jpg';
+        $defaultAvatarUrl = 'https://thumbs.dreamstime.com/z/l%C3%ADnea-an%C3%B3nima-icono-del-avatar-hombre-ejemplo-vector-perfil-de-defecto-aislado-en-blanco-dise%C3%B1o-masculino-estilo-esquema-127784971.jpg';
+      
+        if (isset($request['avatar'])) {
+            $user->clearMediaCollection('avatar');
+            $user->addMediaFromRequest('avatar')->toMediaCollection('avatar');
+           
+        } 
+        if(!isset($request['avatar'])){
+        $user->addMediaFromUrl($defaultAvatarUrl)->toMediaCollection('avatar');
 
+        }
+
+        if (isset($request['perfil'])) {
+            $user->clearMediaCollection('perfil');
+
+            $user->addMediaFromRequest('perfil')->toMediaCollection('perfil');
+        }
+        if (!isset($request['perfil'])) {
+            $user->addMediaFromUrl($defaultPerfilUrl)->toMediaCollection('perfil');
+        
+        }
+       
+        return redirect()->back();
     }
-                return redirect()->back();
-            }
 
     /**
      * Display the specified resource.

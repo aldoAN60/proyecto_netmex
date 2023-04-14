@@ -8,11 +8,10 @@
       
     <form method="POST" action="{{ route('avatar.store') }}" enctype="multipart/form-data">
                 @csrf
-            @foreach ($perfiles as $perfil)
             <div class="card mb-3" style=" max-width: 1500px;color:black; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
                 <div class="row g-0" style="">
                 <div class="col-md-4">
-                    <img style="height: 500px;" src="{{$perfil->getUrl()}}" class="card-img" alt="">
+                    <img style="height: 500px;" src="{{auth()->user()->getFirstMediaUrl('perfil','card')}}" class="card-img" alt="">
                     <div class="input-group mb-3" style="
                         margin-top:-8.5%;
                         width: 80%;
@@ -76,7 +75,6 @@
 
 
        
-      @endforeach
     {{-- <img src="{{ Auth::user()->getFirstMedia('perfiles')->getUrl('thumb') }}"  >
      --}}
     
