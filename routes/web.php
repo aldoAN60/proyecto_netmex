@@ -49,3 +49,12 @@ Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // // Route::get('/avatar', [App\Http\Controllers\AvatarController::class, 'store']);
+
+Route::get('/fondo', function (){
+    return view('fondo');
+});
+Route::view('/nosotros', 'nosotros')->name('nosotros');
+Route::view('/mision', 'mision')->name('mision');
+Route::view('/vision', 'vision')->name('vision');
+Route::view('/valores', 'valores')->name('valores');
+Route::view('/tyc', 'tyc')->name('tyc');
