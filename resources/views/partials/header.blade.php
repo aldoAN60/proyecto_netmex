@@ -5,15 +5,20 @@
       <li class="nav-item" >
         <a class="nav-link {{Active('inicio')}}" href="{{route('inicio')}}" >Inicio</a>
       </li>
+      @auth
       <li class="nav-item" >
-        <a class="nav-link {{Active('contenido')}}" href="{{--{{route('contenido')}}--}}" >Contenido</a>
-      </li>
+        <a class="nav-link {{Active('paypal-donation')}}" href="{{route('paypal-donation')}}" >donacion</a>
+      </li>    
+      @endauth
+      
       <li class="nav-item" >
         <a class="nav-link {{ Active('contacto') }}"href="{{route('contacto')}}"  >Contacto</a>
       </li>
+      @auth
       <li class="nav-item" >
-        <a class="nav-link {{ Active('nosotros') }}" href="{{--{{route('nosotros')}}--}}" >Nosotros</a>
+        <a class="nav-link {{ Active('catalogo') }}" href="{{route('catalogo.index')}}" >catalogo</a>
       </li >
+      @endauth
       @guest
       @if (Route::has('login'))
       <li class="nav-item">
@@ -37,7 +42,7 @@
         <a class="nav-link {{ Active('mi_cuenta') }}" href="{{route('mi_cuenta')}}" >Mi cuenta</a>
       </li >
       <li class="nav-item">
-        <a class="nav-link" href="{{route('mi_cuenta')}}" style="margin-top:-20%; width:50px;" > 
+        <a class="nav-link avatar" href="{{route('mi_cuenta')}}"> 
           <img src="{{auth()->user()->getFirstMediaUrl('avatar','icon')}}" alt="avatar" class="rounded-circle" style="font-size: 35px;">
           <p style="margin-top: -10%; "> {{ Auth::user()->name }}</p> 
         </a>

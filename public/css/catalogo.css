@@ -1,0 +1,113 @@
+.vjs-default-skin {
+    background-color: #f7f7f7;
+    color: #333;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+.vjs-default-skin .vjs-big-play-button { 
+    font-size: 2em; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.vjs-default-skin .vjs-control-bar {
+    /* Añadir tu personalización aquí */
+    background-color: #333;
+    font-family: 'Helvetica Neue', sans-serif;
+    color: #FFFFFF;
+}
+
+.vjs-default-skin .vjs-play-progress {
+    /* Añadir tu personalización aquí */
+    background-color: #000000;
+}
+
+.vjs-default-skin .vjs-volume-level {
+    background-color: #000000;
+}
+
+.vjs-default-skin .vjs-progress-control .vjs-play-progress:before {
+    background-image: url(icons/nuevo-icono.png);
+}
+
+.contenedorInfo {
+    position: relative;
+    display: inline-block;
+}
+
+.estrella:before {
+    content: "\2605";
+    font-size: 25px;
+    color: #f0ad4e;
+    display: inline-block;
+}
+
+.spanMas {
+    position: absolute;
+    top: 7.5px;
+    left: 25px; /* ajusta esta propiedad para posicionar el span */
+}
+
+.spanPlus {
+    top: 6px;
+    left: 60px;
+}
+
+.spanPlusPlus {
+    top: 8px;
+    left: 30px;
+}
+
+.spanPlusPlus li {
+    float: left;
+    display: block;
+    margin-left: 4px;
+    width: 53px;
+}
+
+span ul li a:hover {
+    color: #F0F0F0;
+    text-decoration: none;
+}
+.container-fluid{ 
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.cont-carrusel{ /*contenedor del carrusel*/
+    width: 100%;
+    height: 90%;
+    margin-top: -25px;
+}
+.flexbox-img{ /*contenedor que muestra las imagenes*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size:cover;
+
+}
+.flexbox-titles{ /*titulos del contenedor flexbox-img*/
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 40%;
+    left: 10%;
+}
+.descripcion{ /*contenedor donde se encuentra la descripcion*/
+width:35%;
+}
+
+.rec-btn{ /*cotenedor que permite estilizar los botones del carrusel*/
+padding:2rem;
+}
+.visible-shadow{ /*permite ver texto sobre fondos claros*/
+    text-shadow: black 0.1em 0.1em 0.2em
+
+}
+.carousel-control-prev{ /*valor unico de bootstrap*/
+width: 5% !important;
+}

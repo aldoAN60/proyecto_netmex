@@ -13,23 +13,19 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/login.css')}}">
     <link rel="stylesheet" href="{{asset('css/nav-inicio-sesion.css')}}">
-    <link rel="stylesheet" href="{{asset('css/loader.css')}}">
     
     @yield('css-style')
     @yield('javascript')
 </head>
 <body>
+    
     @include('partials.loader')
     @include('partials.header')
-    <div class="container-fluid text-center">
-        
-        
-        @yield('content')
-    </div>
-        @include('partials.footer')
-        <script src="/js/loader.js"></script>
+    @yield('content')
+    <script src="/js/loader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.min.js" defer></script>
 
 </body>
 </html>
+

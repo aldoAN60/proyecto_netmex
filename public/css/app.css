@@ -3,6 +3,8 @@
 body{
     background: radial-gradient(circle,#0f6847,#031d13);
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
+    height: 100%;
 }
 /*inicio primera seccion*/
 .menu{
@@ -81,6 +83,13 @@ a{
 }
 .parrafos{ /* clase que modifica las etiquetas P*/
     color:#f2f2f2;
+}
+.txt-bold{
+    font-weight: 700;
+}
+.P-small{
+    font-size: small;
+    text-align: justify;
 }
 .errores{
     font-size: 17px;
