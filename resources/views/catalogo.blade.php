@@ -25,7 +25,7 @@
                             </svg>
                             <span class="rec-btn txt-bold"><a href="{{route('peliculas.triller',$laMejor['id'])}}" style="color:#000 !important;">Reproducir</a></span>
                         </button>
-                        <button type="button" class="btn btn-secondary">
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <svg width="30" height="30" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 2a10 10 0 1 0 0 20 10 10 0 1 0 0-20z"></path>
                                 <path d="M12 16v-4"></path>
@@ -33,12 +33,12 @@
                             </svg>
                             <span class="rec-btn txt-bold">Mas información</span> 
                         </button>
+                        @include('partials.movie-info-modal')  
                     </nav>
                 </nav>
             </div>
             
             @foreach ($popularMovies as $movie)
-                
             <div class="carousel-item">
                 <nav class="flexbox-img" style="background-image: url({{'https://image.tmdb.org/t/p/w1280'.$movie['backdrop_path'] }});">
                     <nav class="flexbox-titles">
@@ -53,7 +53,7 @@
                             </svg>
                             <span class="rec-btn txt-bold"><a href="{{route('peliculas.triller',$movie['id'])}}" style="color:#000 !important;">Reproducir</a></span>
                         </button>
-                        <button type="button" class="btn btn-secondary">
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#{{$movie['id']}}">
                             <svg width="30" height="30" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 2a10 10 0 1 0 0 20 10 10 0 1 0 0-20z"></path>
                                 <path d="M12 16v-4"></path>
@@ -61,10 +61,13 @@
                             </svg>
                             <span class="rec-btn txt-bold">Mas información</span> 
                         </button>
+                        
+    @include('partials.movie-detail-modal') 
                     </nav>
                 </nav>
             </div>
             @endforeach
+            
         </div>        
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -74,7 +77,8 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
-    </div>    
+    </div> 
+    
 </nav>
 
 

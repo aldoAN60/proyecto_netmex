@@ -28,6 +28,7 @@ class CarteleraController extends Controller
         $topSemanales = Http::withToken(config('services.tmdb.token'))
             ->get('https://api.themoviedb.org/3/trending/all/week?api_key=dd974a88eac4b6306518cfba28e6e350&language=es')
             ->json()['results'];
+        
 
         $generosArray = Http::withToken(config('services.tmdb.token'))
             ->get('https://api.themoviedb.org/3/genre/movie/list?api_key=dd974a88eac4b6306518cfba28e6e350&language=es')
@@ -44,14 +45,59 @@ class CarteleraController extends Controller
         ->get('https://api.themoviedb.org/3/movie/top_rated?api_key=197b965cfaac7b58e372bf8aeb7acc3a&language=es-MX&page=1')
         ->json();
         $laMejor = $mejorCalificadas['results'][0];
-            //dump($topSemanales);
-            //dump($popularMovies);
-        return view('catalogo', [
-            'topSemanales' => $topSemanales,
-            'generos' => $generos,
-            'popularMovies'=> $popularMovies,
-            'laMejor'=>$laMejor
-        ]);
+
+        $creditosArray = Http::withToken(config('services.tmdb.token'))
+        ->get('https://api.themoviedb.org/3/movie/'.$laMejor['id'].'/credits?api_key=197b965cfaac7b58e372bf8aeb7acc3a&language=es-MX')
+        ->json()['cast'];
+        $creditos = collect($creditosArray)->mapWithKeys(function ($creditos){
+            return [
+                $creditos['id'] => [
+                    'nombre' => $creditos['name'],
+                    'personaje' => $creditos['character'],
+                    'foto' => $creditos['profile_path'] ? 'https://image.tmdb.org/t/p/w92'.$creditos['profile_path'] : null,
+                    'popularidad' => $creditos['popularity'],
+                ]
+            ];
+        })->sortByDesc('popularidad')->take(12); // ordena por popularidad y limita a 12 elementos
+        
+        $popularMovies = Http::withToken(config('services.tmdb.token'))
+        ->get('https://api.themoviedb.org/3/movie/popular?api_key=197b965cfaac7b58e372bf8aeb7acc3a&language=es-MX&page=1')
+        ->json()['results'];
+
+        $creditosPorPelicula = [];
+foreach ($popularMovies as $pelicula) {
+    $creditosCarr = Http::withToken(config('services.tmdb.token'))
+        ->get('https://api.themoviedb.org/3/movie/'.$pelicula['id'].'/credits?api_key=197b965cfaac7b58e372bf8aeb7acc3a&language=es-MX')
+        ->json();
+
+    if(isset($creditosCarr['cast'])){
+        $creditosCarr = $creditosCarr['cast'];
+        $creditosTop = collect($creditosCarr)->mapWithKeys(function ($creditosTop){
+            return [
+                $creditosTop['id'] => [
+                    'nombre' => $creditosTop['name'],
+                    'personaje' => $creditosTop['character'],
+                    'foto' => $creditosTop['profile_path'] ? 'https://image.tmdb.org/t/p/w92'.$creditosTop['profile_path'] : null,
+                    'popularidad' => $creditosTop['popularity'],
+                ]
+            ];
+        })->sortByDesc('popularidad')->take(12); // ordena por popularidad y limita a 12 elementos
+    } else {
+        $creditosTop = collect();
+    }
+
+    $creditosPorPelicula[$pelicula['id']] = $creditosTop;
+}
+
+return view('catalogo', [
+    'topSemanales' => $topSemanales,
+    'generos' => $generos,
+    'popularMovies'=> $popularMovies,
+    'laMejor'=>$laMejor,
+    'creditos'=>$creditos,
+    'creditosPorPelicula'=>$creditosPorPelicula
+]);
+
     }
 
 

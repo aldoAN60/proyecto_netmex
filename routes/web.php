@@ -5,31 +5,35 @@ use App\Http\Controllers\moviesController;
 use App\Http\Controllers\paypalController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarteleraController;
-Route::view('mandatory-sign-up','mandatory-sign-up')->name('mandatory-sign-up');
+
+Route::view('/','inicio')->name('inicio'); /*inicio de pagina*/ 
+Route::view('mandatory-sign-up','mandatory-sign-up')->name('mandatory-sign-up'); /*muestra una pagina de error cuando no se esta autorizado*/
+
 Route::get('/donacion-exitosa', [moviesController::class,'index'])->name('movies.index');
+Route::view('/paypal-donation','paypal-donation')->name('paypal-donation');
+Route::post('/paypal/pay', [paypalController::class,'payment_paypal'])->name('payment');
+Route::get('/paypal/status', [paypalController::class,'paypal_status'])->name('status');
+
 Route::get('/movies/{movie}', 'moviesController@show')->name('movies.show');
 
-Route::view('/','inicio')->name('inicio');
+Route::view('/contacto', 'contacto')->name('contacto');
+Route::get('/contacto',[contactoController::class,'index'])->name('contacto');
+Route::post('/contacto', [contactoController::class,'store'])->name('contacto-post');
+
 
 Route::post('/registro_email',[homepageController::class,'sign_up_email'])->name('registro_inicio');;
 
-Route::view('/paypal-donation','paypal-donation')->name('paypal-donation');
-Route::view('/contacto', 'contacto')->name('contacto');
+// Route::view('/')->name();
+Route::get('/peliculas/{id}',[CarteleraController::class,'mostrar_trillers'])->name('peliculas.triller');
 
-Route::get('/contacto',[contactoController::class,'index'])->name('contacto');
 
-Route::post('/contacto', [contactoController::class,'store'])->name('contacto-post');
-
-Route::post('/paypal/pay', [paypalController::class,'payment_paypal'])->name('payment');
 Route::get('/catalogo', function (){
     return view('catalogo');
 });
-Route::get('/peliculas/{id}',[CarteleraController::class,'mostrar_trillers'])->name('peliculas.triller');
 
 
 Route::get('/catalogo/{id}', [CarteleraController::class, 'show'])->name('catalogo.show');
 Route::get('/catalogo', [CarteleraController::class, 'index'])->name('catalogo.index');
-Route::get('/paypal/status', [paypalController::class,'paypal_status'])->name('status');
 #Route::get('/paypal-success', [paypalController::class,'index'])->name('paypal-success');
 use  App\Http\Controllers\AvatarController;
 
