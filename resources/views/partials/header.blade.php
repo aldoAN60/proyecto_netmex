@@ -24,7 +24,7 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ route('login') }}" style="margin-top:-17%; " data-bs-toggle="modal" data-bs-target="#staticBackdrop"> 
           <i class="bi bi-person-circle" style="font-size: 35px;"></i>
-          <p style="margin-top: -10%; "> {{ __('Login') }}</p> 
+          <p> {{ __('Login') }}</p> 
         </a>
       </li>
       @endif
@@ -39,11 +39,11 @@
       @endif
       @else
       <li class="nav-item" >
-        <a class="nav-link {{ Active('mi_cuenta') }}" href="{{route('mi_cuenta')}}" >Mi cuenta</a>
+        <a class="nav-link {{ Active('perfil.create') }}" href="{{route('perfil.create')}}" >Mi cuenta</a>
       </li >
       <li class="nav-item">
-        <a class="nav-link avatar" href="{{route('mi_cuenta')}}"> 
-          <img src="{{auth()->user()->getFirstMediaUrl('avatar','icon')}}" alt="avatar" class="rounded-circle" style="font-size: 35px;">
+        <a class="nav-link avatar" href="{{route('perfil.create')}}"> 
+          {{-- <img src="{{auth()->user()->getFirstMediaUrl('avatar','icon')}}" alt="avatar" class="rounded-circle" style="font-size: 35px;"> --}}
           <p style="margin-top: -10%; "> {{ Auth::user()->name }}</p> 
         </a>
       </li>   

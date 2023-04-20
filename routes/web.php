@@ -40,14 +40,13 @@ use  App\Http\Controllers\AvatarController;
 
 
 Route::view('/sign_up','sign_up')->name('sign_up');
-Route::view('/mi_cuenta', 'mi_cuenta')->name('mi_cuenta');
 // Route::view('/register','register')->name('register');
 // Route::view('/layout','layout')->name('layout');
-Route::get('/mi_cuenta', 'AvatarController@index')->name('mi_cuenta');
 
+Route::get('/perfil/create', [AvatarController::class, 'create'])->name('perfil.create');
 
+Route::post('/perfil/{id}', [AvatarController::class, 'update'])->name('perfil.update');
 
-Route::resource('avatar', 'AvatarController');
 
 Auth::routes();
 
