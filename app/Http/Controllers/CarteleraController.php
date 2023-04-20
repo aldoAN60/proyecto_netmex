@@ -26,7 +26,7 @@ class CarteleraController extends Controller
     public function index()
     {
         $topSemanales = Http::withToken(config('services.tmdb.token'))
-            ->get('https://api.themoviedb.org/3/trending/all/week?api_key=dd974a88eac4b6306518cfba28e6e350&language=es')
+            ->get('https://api.themoviedb.org/3/trending/all/week?api_key=dd974a88eac4b6306518cfba28e6e350&language=es-MX')
             ->json()['results'];
         
 
@@ -100,7 +100,28 @@ return view('catalogo', [
 
     }
 
+    public function home_image(){
+        $most_seenArray = Http::withToken(config('services.tmdb.token'))
+            ->get('https://api.themoviedb.org/3/movie/now_playing?api_key=197b965cfaac7b58e372bf8aeb7acc3a&language=es-MX&page=1&region=MX')
+            ->json()['results'];
+            $most_seen = collect($most_seenArray)->mapWithKeys(function($most_seen){
+                return [
+                    $most_seen['id'] =>[
+                        'foto' => $most_seen['backdrop_path'] ? 'https://image.tmdb.org/t/p/original'.$most_seen['backdrop_path'] : null,
+                        'titulo' => $most_seen['title'],
+                        'popularidad' => $most_seen['popularity']
+                    ] 
+                    ];
+            })->sortByDesc('popularidad')->take(5); /* toma solo 5 resultados*/
+            $masMirada = $most_seen->random(1); 
+            // dd($most_seen);
+            // dd($masMirada);
+            return view('inicio',[
+                'most_seen'=>$most_seen,
+                'masMirada'=>$masMirada
+            ]);
 
+    }
     
     public function mostrar_trillers($id){
         $peliculas = Http::withToken(config('services.tmdb.token'))

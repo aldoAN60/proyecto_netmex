@@ -16,12 +16,13 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 ">
+                        if
                         <img src="{{'https://image.tmdb.org/t/p/w500'.$movie['backdrop_path'] }}" alt="{{ $movie['original_title'] }}" class="img-fluid">
                     </div>
-                    <div class="col-md-6 modal-dialog-scrollable">
+                    <div class="col-md-6 modal-dialog-scrollable down-flex">
                         <p class="parrafos">{{ $movie['overview'] }}</p>                
                         <p class="parrafos">Calificación: {{round($movie['vote_average'] * 10).'%'  }}</p>
-                        <h4 class="parrafos">Reparto:</h4>    
+                          
                     </div>
                 </div>
                 <div class="row">
@@ -32,6 +33,11 @@
                                     <p class="parrafos"><strong>Nombre:</strong> {{ $actor['nombre'] }}</p>
                                     @if ($actor['foto'])
                                         <img src="{{ $actor['foto'] }}" alt="{{ $actor['nombre'] }}">
+                                    @else
+                                    <div class="sin-img">
+                                        <p class="parrafos">No disponible</p>
+                                    </div>
+                                        
                                     @endif
                                     <p class="parrafos"><strong>Personaje:</strong> {{ $actor['personaje'] }}</p>
                                     

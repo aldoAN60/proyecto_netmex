@@ -111,27 +111,22 @@
                     <!-- AQUÍ INICIA EL CONTENIDO DE NUESTRO MODAL (HEAD, BODY, FOOTER) -->
                         <div class="modal-content">
                             <!-- HEAD DEL MODAL -->
-                            <div class="modal-header" style="color: #FFFFFF; background: #0F0F0F;">
+                            <div class="modal-header" style="background: #0f6847;">
                                 <!-- TÍTULO DEL MODAL -->
                                 <!-- 
                                 -   CON IF VALIDAMOS SI EL VALOR DE 'media_type' ES IGUAL A TV, DE SER ASÍ, EL CAMPO A MOSTRAR 
                                 -   EN EL TÍTULO DEL MODAL ES name SI NO ES TV, ENTONCES ES movie.
                                 -   DE ESTA MANERA MOSTRAREMOS SIN ERRORES EL NOMBRE DE LA SERIE O DE LA PELÍCULA
                                 -->
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel"> @if ($topSemanal['media_type'] == "tv") {{ $topSemanal['name'] }} @else {{ $topSemanal['title'] }} @endif | NETMEX </h1>
+                                <h1 class="modal-title fs-5 titulos" id="staticBackdropLabel"> @if ($topSemanal['media_type'] == "tv") {{ $topSemanal['name'] }} @else {{ $topSemanal['title'] }} @endif | NETMEX </h1>
                                 <!-- BOTÓN CERRAR DEL MODAL -->
                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <!-- ESTE ES EL BODY DE NUESTRO MODAL -->
-                            <div class="modal-body" style="background: #038c5a; font: condensed 120% sans-serif; font-size: 15pt; color: #FFFFFF;">
+                            <div class="modal-body" style="background: #031d13; font: condensed 120% sans-serif; font-size: 15pt; color: #FFFFFF;">
                             <!-- CREAMOS UN DIV CON CLASE CONTAINER PARA TENER UN MANEJO AMPLIO DEL CONTENIDO -->
                                 <div class="container" style="width:60%; float: left;">
-                                <!-- ETIQUETA VÍDEO QUE MUESTRA EL TRAILER LA PELÍCULA -->
-                                    <video id="video" class="video-js vjs-default-skin" style="margin-bottom: 15px;" controls preload="none" width="444" height="250" poster="{{ 'https://image.tmdb.org/t/p/w500'.$topSemanal['backdrop_path'] }}"  data-setup="{}">
-                                        <source src="/videos/conoce2motolika.mp4" type='video/mp4'>
-                                        <p class="vjs-no-js">Para ver este vídeo debes habilitar JavaScript <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
-                                    </video>
-                                    <!-- CON ESTO TENEMOS UN MARGIN TOP -->
+                                    <img src="{{ 'https://image.tmdb.org/t/p/w300'.$topSemanal['backdrop_path'] }}" alt="">
                                     <div class="mt-2">
                                         <!-- OTRO CONTENEDOR QUE DA ESTILO A LOS METADATOS -->
                                         <div class="contenedorInfo">
@@ -181,7 +176,11 @@
                             <!-- FOOTER DEL MODAL, CONTIENE UN BOTÓN PARA CERRAR EL MODAL Y OTRO PARA IR DIRECTO A LA PELÍCULA -->
                             <div class="modal-footer" style="background: #038c5a; --bs-modal-footer-border-color: #038c5a;">
                                 <a type="button" href="" class="btn btn-secondary" data-bs-dismiss="modal" style="background: #000000; --bs-btn-border-color: #000000;">Cerrar</a>
-                                <a type="button" href="{{ route('catalogo.show', $topSemanal['id']) }}"  class="btn btn-primary" style="background: #0b593c; --bs-btn-border-color: #0b593c; --bs-btn-hover-border-color: #565e64; width: 128px;">Wachar       <i class="fa fa-play" style="font-size:14px"></i></a>
+                                <a type="button" href="{{route('peliculas.triller',$topSemanal['id']) }}"  class="btn btn-primary" style="background: #0b593c; --bs-btn-border-color: #0b593c; --bs-btn-hover-border-color: #565e64; width: 128px;">Reproducir <svg width="20" height="20" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2a10 10 0 1 0 0 20 10 10 0 1 0 0-20z"></path>
+                                    <path d="m10 8 6 4-6 4V8z"></path>
+                                </svg>
+                                </a>
                             </div>
                         </div>
                     </div>

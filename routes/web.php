@@ -6,7 +6,8 @@ use App\Http\Controllers\paypalController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarteleraController;
 
-Route::view('/','inicio')->name('inicio'); /*inicio de pagina*/ 
+// Route::view('/','inicio')->name('inicio'); /*inicio de pagina*/ 
+Route::get('/',[CarteleraController::class,'home_image'])->name('inicio');
 Route::view('mandatory-sign-up','mandatory-sign-up')->name('mandatory-sign-up'); /*muestra una pagina de error cuando no se esta autorizado*/
 
 Route::get('/donacion-exitosa', [moviesController::class,'index'])->name('movies.index');

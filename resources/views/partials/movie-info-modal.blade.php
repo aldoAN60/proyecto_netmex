@@ -19,8 +19,7 @@
                     </div>
                     <div class="col-md-6 modal-dialog-scrollable">
                         <p class="parrafos">{{ $laMejor['overview'] }}</p>                
-                        <p class="parrafos">Calificación: {{round($laMejor['vote_average'] * 10).'%'  }}</p>
-                        <h4 class="parrafos">Reparto:</h4>    
+                        <p class="parrafos">Calificación: {{round($laMejor['vote_average'] * 10).'%'  }}</p>  
                     </div>
                 </div>
                 <div class="row">

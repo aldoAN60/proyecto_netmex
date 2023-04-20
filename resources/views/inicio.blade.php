@@ -2,7 +2,7 @@
 @section('title','inicio')
     
 @section('content')
-<div class="row" id="cont-slo-imgs">
+<div class="row" id="cont-slo-imgs" style="background-image:url({{$masMirada[0]['foto']}})">
     <div class="col-sm-7">
         <div class="slogan">
             <h1 class="titulos">tus peliculas favoritas en un mismo lugar</h1>
@@ -25,11 +25,12 @@
             @enderror
         </div>
     </div>
+    <!--
     <div class="col-sm-5">
         <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="/img/movies/pelicula_1.jpg" class="img" alt="..."> <!-- nombre original de class "d-block w-100" -->
+                    <img src="/img/movies/pelicula_1.jpg" class="img" alt="...">  
                     <div class="carousel-caption d-none d-md-block">
                         <div class="carrusel_img">
                             <h3 class="titulos">El exorsista</h3>
@@ -57,7 +58,8 @@
                 </div>
             </div>
         </div>
-    </div>
+    -->
+</div>
     <hr class="jump_line">
 </div>
 
